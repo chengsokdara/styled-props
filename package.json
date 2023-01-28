@@ -1,0 +1,62 @@
+{
+  "name": "@chengsokdara/styled-props",
+  "version": "0.0.1",
+  "description": "Style React components with props",
+  "keywords": [
+    "react",
+    "style",
+    "styled",
+    "prop",
+    "props",
+    "styled-props",
+    "component"
+  ],
+  "homepage": "https://github.com/chengsokdara/styled-props#readme",
+  "bugs": "https://github.com/chengsokdara/styled-props/issues",
+  "license": "MIT",
+  "author": "Sokdara Cheng <chengsokdara@gmail.com> (https://chengsokdara.github.io)",
+  "repository": "github:chengsokdara/styled-props",
+  "scripts": {
+    "ts-types": "tsc",
+    "build-dev": "rimraf lib && tsup src/index.ts --watch",
+    "build-prod": "rimraf dist && env NODE_ENV=production tsup",
+    "build-watch": "tsup --watch",
+    "lint-fix": "eslint ./src --ext .ts,.tsx --quiet --fix --ignore-path ./.gitignore",
+    "lint-format": "prettier  --loglevel warn --write \"./**/*.{ts,tsx,css,md,json}\" ",
+    "lint": "yarn lint:format && yarn lint:fix "
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.27",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.3",
+    "react": "^18.2.0",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "default": "./dist/index.cjs",
+    "require": "./dist/index.cjs",
+    "import": "./dist/index.cjs",
+    "node": "./dist/index.cjs"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
