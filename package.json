@@ -45,7 +45,7 @@
     "lib",
     "dist"
   ],
-  "main": "lib/index.cjs",
+  "main": "dist/index.cjs",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "exports": {
@@ -56,7 +56,6 @@
   },
   "type": "module",
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   }
 }

@@ -1,6 +1,6 @@
-import type { Options } from 'tsup';
+import type { Options } from 'tsup'
 
-const env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV
 
 export const tsup: Options = {
   splitting: true,
@@ -16,4 +16,4 @@ export const tsup: Options = {
   target: 'es2020',
   outDir: env === 'production' ? 'dist' : 'lib',
   entry: ['src/**/*.ts'],
-};
+}
