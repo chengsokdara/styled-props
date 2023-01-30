@@ -18,7 +18,7 @@
   "repository": "github:chengsokdara/styled-props",
   "scripts": {
     "ts-types": "tsc",
-    "build-dev": "rimraf lib && tsup src/index.ts --watch",
+    "build-dev": "rimraf lib && tsup --watch",
     "build-prod": "rimraf dist && env NODE_ENV=production tsup",
     "build-watch": "tsup --watch",
     "lint-fix": "eslint ./src --ext .ts,.tsx --quiet --fix --ignore-path ./.gitignore",
