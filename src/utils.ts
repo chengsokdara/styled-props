@@ -42,13 +42,14 @@ const merge = (merger: object, origin: object) => ({
   ...merger,
 })
 
-const injectShadow = (shadow: TElevation, theme?: ITheme) => {
+const injectShadow = (shadow: TElevation, color?: string, theme?: ITheme) => {
   if (shadow <= 0 || shadow > 5) return {}
   return {
     distance: shadows[shadow]![2]! + 6,
-    endColor: `${theme?.colors?.primary}00`,
-    startColor: `${theme?.colors?.primary}${alphaShadow(shadow)}`,
-    // offset: [0, 0],
+    endColor: `${color ?? theme?.colors?.primary ?? '000000'}00`,
+    startColor: `${color ?? theme?.colors?.primary ?? '000000'}${alphaShadow(
+      shadow
+    )}`,
   }
 }
 
