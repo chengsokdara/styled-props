@@ -42,12 +42,11 @@
     "react": "*"
   },
   "files": [
-    "lib",
     "dist"
   ],
   "main": "dist/index.cjs",
-  "module": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "module": "dist/index.cjs",
+  "types": "dist/index.d.ts",
   "exports": {
     "default": "./dist/index.cjs",
     "require": "./dist/index.cjs",
