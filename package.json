@@ -1,6 +1,6 @@
 {
   "name": "@chengsokdara/styled-props",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Style React components with props",
   "keywords": [
     "react",
