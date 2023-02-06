@@ -220,6 +220,11 @@ export type TTextAlignStyleProps = {
 }
 
 /**
+ * FUNCTION TYPE ===========>
+ */
+export type TStyler = (props: any, options?: ITheme | TPlatformOS) => object
+
+/**
  * LITERAL TYPE ===========>
  */
 

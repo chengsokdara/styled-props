@@ -18,14 +18,14 @@ import {
   composeTextAlign,
 } from './composer'
 import { EFontWeight } from './enum'
-import type { ITheme, TPlatformOS } from './types'
+import type { ITheme, TPlatformOS, TStyler } from './types'
 import { capitalize, extract, merge } from './utils'
 
 /**
  * ########## ALIGN CONTENT STYLES ##########
  */
 
-export const alignContentStyles = (props: any) => {
+export const alignContentStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -43,7 +43,7 @@ export const alignContentStyles = (props: any) => {
  * ########## ALIGN ITEMS STYLES ##########
  */
 
-export const alignItemsStyles = (props: any) => {
+export const alignItemsStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -60,7 +60,7 @@ export const alignItemsStyles = (props: any) => {
  * ########## ALIGN SELF STYLES ##########
  */
 
-export const alignSelfStyles = (props: any) => {
+export const alignSelfStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -77,12 +77,12 @@ export const alignSelfStyles = (props: any) => {
  * ########## BACKGROUND COLOR STYLES ##########
  */
 
-export const backgroundColorStyles = (props: any, theme?: ITheme) => {
+export const backgroundColorStyles: TStyler = (props, theme) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
       if (key.startsWith('bg-'))
-        style = merge(composeBackgroundColor(key, theme), style)
+        style = merge(composeBackgroundColor(key, theme as ITheme), style)
     }
     if (typeof value === 'string') {
       if (key === 'bg') style = merge({ backgroundColor: value }, style)
@@ -95,12 +95,12 @@ export const backgroundColorStyles = (props: any, theme?: ITheme) => {
  * ########## BORDER STYLES ##########
  */
 
-export const borderStyles = (props: any, theme?: ITheme) => {
+export const borderStyles: TStyler = (props, theme) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
       if (key.startsWith('bc'))
-        style = merge(composeBorderColor(key, theme), style)
+        style = merge(composeBorderColor(key, theme as ITheme), style)
       if (key.startsWith('br')) style = merge(composeBorderRadius(key), style)
       if (key.startsWith('bs'))
         style = merge({ borderStyle: key.split('-').pop() }, style)
@@ -114,7 +114,7 @@ export const borderStyles = (props: any, theme?: ITheme) => {
     }
     if (typeof value === 'string') {
       if (key.startsWith('bc'))
-        style = merge(composeBorderColor(key, theme, value), style)
+        style = merge(composeBorderColor(key, theme as ITheme, value), style)
       if (key === 'bs') style = merge({ borderStyle: value }, style)
     }
   })
@@ -125,12 +125,12 @@ export const borderStyles = (props: any, theme?: ITheme) => {
  * ########## COLOR STYLES ##########
  */
 
-export const colorStyles = (props: any, theme?: ITheme) => {
+export const colorStyles: TStyler = (props, theme) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
       if (key.startsWith('color-'))
-        style = merge(composeColor(key, theme), style)
+        style = merge(composeColor(key, theme as ITheme), style)
     }
     if (typeof value === 'string') {
       if (key === 'color') style = merge({ color: value }, style)
@@ -143,7 +143,7 @@ export const colorStyles = (props: any, theme?: ITheme) => {
  * ########## FLEX ALIGNMENT STYLES ##########
  */
 
-export const flexAlignmentStyles = (props: any) => {
+export const flexAlignmentStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -165,7 +165,7 @@ export const flexAlignmentStyles = (props: any) => {
  * ########## FLEX DIRECTION STYLES ##########
  */
 
-export const flexDirectionStyles = (props: any) => {
+export const flexDirectionStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -180,7 +180,7 @@ export const flexDirectionStyles = (props: any) => {
  * ########## FLEX GROW STYLES ##########
  */
 
-export const flexGrowStyles = (props: any) => {
+export const flexGrowStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -198,7 +198,7 @@ export const flexGrowStyles = (props: any) => {
  * ########## FLEX STYLES ##########
  */
 
-export const flexStyles = (props: any) => {
+export const flexStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -226,7 +226,7 @@ export const flexStyles = (props: any) => {
  * ########## FLEXBOX STYLES ##########
  */
 
-export const flexboxStyles = (props: any) => {
+export const flexboxStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -270,13 +270,18 @@ export const flexboxStyles = (props: any) => {
  * ########## FONT STYLES ##########
  */
 
-export const fontStyles = (props: any, os?: TPlatformOS) => {
+export const fontStyles: TStyler = (props, os) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
       if (key === 'bold')
         style = merge(
-          composeFont(props.font, EFontWeight.Bold, props.italic, os),
+          composeFont(
+            props.font,
+            EFontWeight.Bold,
+            props.italic,
+            os as TPlatformOS
+          ),
           style
         )
       if (key === 'italic')
@@ -285,7 +290,7 @@ export const fontStyles = (props: any, os?: TPlatformOS) => {
             props.font,
             props.bold ? EFontWeight.Bold : props.weight,
             true,
-            os
+            os as TPlatformOS
           ),
           style
         )
@@ -297,7 +302,7 @@ export const fontStyles = (props: any, os?: TPlatformOS) => {
             props.font,
             props.bold ? EFontWeight.Bold : capitalize(key),
             props.italic,
-            os
+            os as TPlatformOS
           ),
           style
         )
@@ -312,7 +317,7 @@ export const fontStyles = (props: any, os?: TPlatformOS) => {
             value,
             props.bold ? EFontWeight.Bold : capitalize(props.weight),
             props.italic,
-            os
+            os as TPlatformOS
           ),
           style
         )
@@ -325,7 +330,7 @@ export const fontStyles = (props: any, os?: TPlatformOS) => {
  * ########## FONT SIZE STYLES ##########
  */
 
-export const fontSizeStyles = (props: any) => {
+export const fontSizeStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -343,7 +348,7 @@ export const fontSizeStyles = (props: any) => {
  * ########## FONT STYLE STYLES ##########
  */
 
-export const fontStyleStyles = (props: any, os?: TPlatformOS) => {
+export const fontStyleStyles: TStyler = (props, os) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -353,7 +358,7 @@ export const fontStyleStyles = (props: any, os?: TPlatformOS) => {
             props.font,
             props.bold ? EFontWeight.Bold : props.weight,
             true,
-            os
+            os as TPlatformOS
           ),
           style
         )
@@ -366,13 +371,18 @@ export const fontStyleStyles = (props: any, os?: TPlatformOS) => {
  * ########## FONT WEIGHT STYLES ##########
  */
 
-export const fontWeightStyles = (props: any, os?: TPlatformOS) => {
+export const fontWeightStyles: TStyler = (props, os) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
       if (key === 'bold')
         style = merge(
-          composeFont(props.font, EFontWeight.Bold, props.italic, os),
+          composeFont(
+            props.font,
+            EFontWeight.Bold,
+            props.italic,
+            os as TPlatformOS
+          ),
           style
         )
       if (key.startsWith('weight-'))
@@ -381,7 +391,7 @@ export const fontWeightStyles = (props: any, os?: TPlatformOS) => {
             props.font,
             props.bold ? EFontWeight.Bold : capitalize(key),
             props.italic,
-            os
+            os as TPlatformOS
           ),
           style
         )
@@ -394,7 +404,7 @@ export const fontWeightStyles = (props: any, os?: TPlatformOS) => {
  * ########## JUSTIFY CONTENT STYLES ##########
  */
 
-export const justifyContentStyles = (props: any) => {
+export const justifyContentStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -412,7 +422,7 @@ export const justifyContentStyles = (props: any) => {
  * ########## MARGIN STYLES ##########
  */
 
-export const marginStyles = (props: any) => {
+export const marginStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -429,7 +439,7 @@ export const marginStyles = (props: any) => {
  * ########## OVERFLOW STYLES ##########
  */
 
-export const overflowStyles = (props: any) => {
+export const overflowStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -448,7 +458,7 @@ export const overflowStyles = (props: any) => {
  * ########## PADDING STYLES ##########
  */
 
-export const paddingStyles = (props: any) => {
+export const paddingStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -465,7 +475,7 @@ export const paddingStyles = (props: any) => {
  * ########## POSITION STYLES ##########
  */
 
-export const positionStyles = (props: any) => {
+export const positionStyles: TStyler = (props) => {
   let style: any = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -502,7 +512,7 @@ export const positionStyles = (props: any) => {
  * ########## RESIZE MODE STYLES ##########
  */
 
-export const resizeModeStyles = (props: any) => {
+export const resizeModeStyles: TStyler = (props) => {
   let style: any = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -521,7 +531,7 @@ export const resizeModeStyles = (props: any) => {
  * ########## SIZING STYLES ##########
  */
 
-export const sizingStyles = (props: any) => {
+export const sizingStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -554,7 +564,7 @@ export const sizingStyles = (props: any) => {
  * ########## SPACING STYLES ##########
  */
 
-export const spacingStyles = (props: any) => {
+export const spacingStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
@@ -573,7 +583,7 @@ export const spacingStyles = (props: any) => {
  * ########## TEXT ALIGN STYLES ##########
  */
 
-export const textAlignStyles = (props: any) => {
+export const textAlignStyles: TStyler = (props) => {
   let style = {}
   Object.entries(props).forEach(([key, value]) => {
     if (typeof value === 'boolean') {
