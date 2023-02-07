@@ -45,13 +45,13 @@
     "dist"
   ],
   "main": "dist/index.cjs",
-  "module": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    "default": "./dist/index.cjs",
+    "node": "./dist/index.cjs",
     "require": "./dist/index.cjs",
-    "import": "./dist/index.cjs",
-    "node": "./dist/index.cjs"
+    "import": "./dist/index.js",
+    "default": "./dist/index.cjs"
   },
   "type": "module",
   "publishConfig": {

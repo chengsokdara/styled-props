@@ -512,6 +512,7 @@ export const positionStyles: TStyler = (props) => {
  * ########## RESIZE MODE STYLES ##########
  */
 
+// TODO - implement resize mode
 export const resizeModeStyles: TStyler = (props) => {
   let style: any = {}
   Object.entries(props).forEach(([key, value]) => {

@@ -94,6 +94,7 @@ export type TFlexStyleProps = {
   basis?: number | string
   // Flex Basis + number or number + pct
   'basis-'?: boolean
+  flex?: number
   // Flex + number
   'flex-'?: boolean
   // Flex Wrap = nowrap
