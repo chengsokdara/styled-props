@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV
 
 export const tsup: Options = {
   splitting: true,
-  sourcemap: env === 'production', // source map is only available in production
+  sourcemap: false, // source map is only available in production
   clean: true, // rimraf dist
   dts: true, // generate dts file for main module
   format: ['cjs', 'esm'], // generate cjs and esm files

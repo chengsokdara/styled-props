@@ -1,9 +1,27 @@
 /* eslint-disable no-sequences */
+/**
+ * [shadowOffset.height, shadowOpacity, shadowRadius]
+ */
+const shadows = [
+  [0, 0, 0],
+  [1, 0.18, 1.0],
+  [1, 0.2, 1.41],
+  [1, 0.22, 2.22],
+  [2, 0.23, 2.62],
+  [2, 0.25, 3.84],
+]
+
 function alphaColor(color: string | undefined, percent: number): string {
   if (!color) return '#000000'
   return `${color}${Math.floor(percent * 255)
     .toString(16)
     .toLocaleUpperCase()}`
+}
+
+function alphaShadow(alpha: number) {
+  return Math.floor((shadows[alpha]![1]! + 0.075) * 255)
+    .toString(16)
+    .toLocaleUpperCase()
 }
 
 /**
@@ -122,11 +140,13 @@ function repeat(str: string, n: number): string {
 
 export {
   alphaColor,
+  alphaShadow,
   capitalize,
   extract,
   merge,
   omitStyle,
   pickStyle,
   shadeColor,
+  shadows,
   tintColor,
 }

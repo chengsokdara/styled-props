@@ -1,5 +1,5 @@
 import type { ITheme, TElevation, TPlatformOS, TStyler } from './types'
-import { merge } from './utils'
+import { alphaShadow, merge, shadows } from './utils'
 
 /**
  * ========== INJECT STYLES ==========
@@ -16,24 +16,6 @@ export const injectStyles = <P>(
     style = merge(injector!(props, options), style)
   }
   return style
-}
-
-/**
- * [shadowOffset.height, shadowOpacity, shadowRadius]
- */
-const shadows = [
-  [0, 0, 0],
-  [1, 0.18, 1.0],
-  [1, 0.2, 1.41],
-  [1, 0.22, 2.22],
-  [2, 0.23, 2.62],
-  [2, 0.25, 3.84],
-]
-
-function alphaShadow(alpha: number) {
-  return Math.floor((shadows[alpha]![1]! + 0.075) * 255)
-    .toString(16)
-    .toLocaleUpperCase()
 }
 
 export const injectShadow = (
